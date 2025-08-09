@@ -1,0 +1,62 @@
+/* src/App.css */
+.homepage-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px;
+  background-color: var(--color-off-white);
+}
+
+.homepage-content {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.title {
+  font-family: 'Playfair Display', serif;
+  font-size: 3.5rem;
+  color: var(--color-deep-blue);
+}
+
+.highlight-text {
+  color: var(--color-golden);
+}
+
+.slogan {
+  font-size: 1.2rem;
+  color: var(--color-charcoal-gray);
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.button {
+  padding: 15px 30px;
+  font-size: 1rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: var(--color-off-white);
+  text-decoration: none; /* Pour enlever le soulignement si on utilise <a> */
+}
+
+.create-button {
+  background-color: var(--color-deep-blue);
+}
+
+.access-button {
+  background-color: var(--color-golden);
+}
+
+.visit-button {
+  background-color: var(--color-burgundy);
+}

@@ -1,0 +1,15 @@
+/* src/styles.css */
+:root {
+    --color-deep-blue: #0B1C2A;
+    --color-golden: #CFAF70;
+    --color-off-white: #FAF9F6;
+    --color-charcoal-gray: #2C2C2C;
+    --color-burgundy: #800020;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', sans-serif;
+    color: var(--color-charcoal-gray);
+    background-color: var(--color-off-white);
+}

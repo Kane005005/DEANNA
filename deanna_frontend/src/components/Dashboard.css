@@ -1,0 +1,105 @@
+/* deanna_frontend/src/components/Dashboard.css - Version simplifiée */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Lato:wght@300;400;500;600&display=swap');
+
+:root {
+  --deep-navy: #0B1C2A;
+  --gold: #CFAF70;
+  --off-white: #FAF9F6;
+  --anthracite: #2C2C2C;
+  --bordeaux: #800020;
+}
+
+/* Structure de base */
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--off-white);
+  font-family: 'Lato', sans-serif;
+}
+
+/* Barre de navigation */
+.dashboard-nav {
+  width: 250px;
+  background-color: var(--deep-navy);
+  color: var(--off-white);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Titre */
+.dashboard-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: var(--gold);
+  margin-bottom: 20px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(207, 175, 112, 0.3);
+}
+
+/* Menu */
+.dashboard-menu {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex-grow: 1;
+}
+
+.dashboard-menu li {
+  margin-bottom: 10px;
+}
+
+.dashboard-link {
+  color: var(--off-white);
+  text-decoration: none;
+  display: block;
+  padding: 10px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+.dashboard-link:hover {
+  background-color: rgba(207, 175, 112, 0.1);
+  color: var(--gold);
+}
+
+.dashboard-link.active {
+  background-color: var(--gold);
+  color: var(--deep-navy);
+  font-weight: 600;
+}
+
+/* Bouton de déconnexion */
+.logout-button {
+  background-color: var(--bordeaux);
+  color: var(--off-white);
+  border: none;
+  padding: 10px;
+  margin-top: 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #6a001b;
+}
+
+/* Contenu principal */
+.dashboard-content {
+  flex: 1;
+  padding: 20px;
+  background-color: white;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .dashboard-container {
+    flex-direction: column;
+  }
+  
+  .dashboard-nav {
+    width: 100%;
+    padding: 15px;
+  }
+}
