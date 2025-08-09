@@ -111,3 +111,87 @@ class OrderRetrieveUpdateView(generics.RetrieveUpdateAPIView):
     def get_queryset(self):
         # On s'assure que le commerçant ne peut accéder qu'aux commandes de sa propre boutique
         return Order.objects.filter(shop__owner=self.request.user)
+
+
+# deanna_backend/core/views.py
+from rest_framework import generics, permissions
+from rest_framework.response import Response
+from rest_framework.views import APIView
+from .models import User, Shop, Category, Product, Order, OrderItem
+from .serializers import (
+    UserSerializer, ShopSerializer, CategorySerializer, ProductSerializer,
+    OrderSerializer, OrderItemSerializer
+)
+
+# ... (les vues existantes sont au-dessus)
+
+class PublicShopListView(generics.ListAPIView):
+    """
+    Vue pour lister toutes les boutiques (accès public).
+    """
+    queryset = Shop.objects.all()
+    serializer_class = ShopSerializer
+
+class ShopDetailView(generics.RetrieveAPIView):
+    """
+    Vue pour voir les détails d'une boutique spécifique (accès public).
+    """
+    queryset = Shop.objects.all()
+    serializer_class = ShopSerializer
+
+class PublicProductListView(generics.ListAPIView):
+    """
+    Vue pour lister les produits d'une boutique spécifique (accès public).
+    """
+    serializer_class = ProductSerializer
+
+    def get_queryset(self):
+        shop_id = self.kwargs['shop_id']
+        return Product.objects.filter(shop_id=shop_id)
+
+class ProductDetailView(generics.RetrieveAPIView):
+    """
+    Vue pour voir les détails d'un produit spécifique (accès public).
+    """
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+# deanna_backend/core/views.py
+# ... (le reste des imports et des vues)
+
+class CreateOrderView(APIView):
+    """
+    Vue pour permettre à un client de passer une commande.
+    C'est une vue publique (pas de permission nécessaire).
+    """
+    def post(self, request, *args, **kwargs):
+        # On va d'abord récupérer les données du corps de la requête
+        data = request.data
+        username = data.get('username')
+        shop_id = data.get('shop_id')
+        items_data = data.get('items')
+        
+        # On vérifie si l'utilisateur existe, sinon on le crée
+        user, created = User.objects.get_or_create(username=username, is_client=True)
+        
+        # On vérifie si la boutique existe
+        try:
+            shop = Shop.objects.get(id=shop_id)
+        except Shop.DoesNotExist:
+            return Response({"detail": "Boutique introuvable."}, status=404)
+
+        # On crée la commande
+        order = Order.objects.create(customer=user, shop=shop, status='pending')
+
+        # On crée les articles de la commande
+        for item_data in items_data:
+            product = Product.objects.get(id=item_data['product_id'])
+            OrderItem.objects.create(
+                order=order,
+                product=product,
+                price=product.price,
+                quantity=item_data['quantity']
+            )
+
+        serializer = OrderSerializer(order)
+        return Response(serializer.data, status=201)

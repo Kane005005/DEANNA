@@ -1,0 +1,56 @@
+/* deanna_frontend/src/components/ShopDetail.css */
+.shop-detail-container {
+  padding: 30px;
+}
+
+.shop-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  color: var(--color-deep-blue);
+}
+
+.shop-category {
+  font-style: italic;
+  color: #666;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.product-card {
+  background-color: var(--color-off-white);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  padding: 20px;
+  text-align: center;
+}
+
+.product-card h4 {
+  font-size: 1.2rem;
+  color: var(--color-deep-blue);
+}
+
+.product-price {
+  font-weight: bold;
+  color: var(--color-golden);
+  font-size: 1.1rem;
+}
+
+.add-to-cart-button {
+  background-color: var(--color-burgundy);
+  color: var(--color-off-white);
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+.add-to-cart-button:hover {
+  background-color: #a8002a;
+}

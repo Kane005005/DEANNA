@@ -9,6 +9,11 @@ from .views import (
     ProductRetrieveUpdateDestroyView,
     OrderListCreateView,
     OrderRetrieveUpdateView,
+    PublicShopListView,
+    ShopDetailView,
+    PublicProductListView,
+    ProductDetailView,
+    CreateOrderView,
 )
 
 urlpatterns = [
@@ -25,4 +30,10 @@ urlpatterns = [
     # URLs pour les commandes
     path('orders/', OrderListCreateView.as_view(), name='order-list'),
     path('orders/<int:pk>/', OrderRetrieveUpdateView.as_view(), name='order-retrieve-update'),
+
+    path('shops/', PublicShopListView.as_view(), name='public-shop-list'),
+    path('shops/<int:pk>/', ShopDetailView.as_view(), name='shop-detail'),
+    path('shops/<int:shop_id>/products/', PublicProductListView.as_view(), name='public-product-list'),
+    path('products/<int:pk>/', ProductDetailView.as_view(), name='product-detail'),
+    path('orders/create/', CreateOrderView.as_view(), name='create-order'),
 ]

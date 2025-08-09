@@ -50,5 +50,9 @@ export const deleteProduct = (id) => api.delete(`/products/${id}/`);
 export const getOrders = () => api.get('/orders/');
 export const getOrder = (id) => api.get(`/orders/${id}/`);
 export const updateOrderStatus = (id, status) => api.patch(`/orders/${id}/`, { status: status });
+export const getShops = () => api.get('/shops/');
+export const getShopDetails = (shopId) => api.get(`/shops/${shopId}/`);
+export const getShopProducts = (shopId) => api.get(`/shops/${shopId}/products/`);
+export const createOrder = (orderData) => api.post('/orders/create/', orderData);
 
 export default api;

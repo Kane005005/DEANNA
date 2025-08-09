@@ -72,3 +72,25 @@ class OrderSerializer(serializers.ModelSerializer):
         model = Order
         fields = ['id', 'customer', 'customer_username', 'shop', 'status', 'created_at', 'updated_at', 'items']
         read_only_fields = ['id', 'customer', 'shop', 'created_at', 'updated_at', 'items']
+
+# deanna_backend/core/serializers.py
+
+from rest_framework import serializers
+from .models import User, Shop, Category, Product, Order, OrderItem
+
+# ... (les serializers existants sont au-dessus)
+
+class PublicProductSerializer(serializers.ModelSerializer):
+    category_name = serializers.ReadOnlyField(source='category.name')
+    class Meta:
+        model = Product
+        fields = ['id', 'name', 'description', 'price', 'category_name', 'shop']
+        read_only_fields = fields
+
+class PublicShopSerializer(serializers.ModelSerializer):
+    owner_username = serializers.ReadOnlyField(source='owner.username')
+    products = PublicProductSerializer(many=True, read_only=True)
+    class Meta:
+        model = Shop
+        fields = ['id', 'owner_username', 'category', 'products']
+        read_only_fields = fields

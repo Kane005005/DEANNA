@@ -11,6 +11,11 @@ import OrderManager from './components/OrderManager'; // <-- Importe le nouveau 
 import './App.css';
 import './Form.css';
 
+// deanna_frontend/src/App.js
+// ... (imports existants)
+import ShopList from './components/ShopList'; // Importe le nouveau composant
+import ShopDetail from './components/ShopDetail'; // Importe le nouveau composant
+
 function App() {
   return (
     <Router>
@@ -18,6 +23,8 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/creer-boutique" element={<CreateShopForm />} />
         <Route path="/acceder-boutique" element={<LoginForm />} />
+        <Route path="/visiter-boutiques" element={<ShopList />} />
+        <Route path="/boutique/:shopId" element={<ShopDetail />} /> {/* Route dynamique */}
 
         <Route 
           path="/dashboard" 
@@ -29,7 +36,7 @@ function App() {
         >
           <Route index element={<h2>Bienvenue, Commerçant !</h2>} />
           <Route path="products" element={<ProductManager />} />
-          <Route path="orders" element={<OrderManager />} /> {/* <-- Ajoute la nouvelle route */}
+          <Route path="orders" element={<OrderManager />} />
         </Route>
       </Routes>
     </Router>
